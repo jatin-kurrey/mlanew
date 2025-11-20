@@ -1,0 +1,84 @@
+{
+  "header": {
+    "title": "MLA Rikesh Sen",
+    "logo": "जय जोहार",
+    "nav": [
+      { "name": "गृह पृष्ठ", "href": "#home" },
+      { "name": "परिचय", "href": "#parichay" },
+      { "name": "मेरा कार्य", "href": "#karya" },
+      { "name": "जवाबदेही", "href": "#transparency" },
+      { "name": "संपर्क", "href": "#contact" }
+    ]
+  },
+  "hero": {
+    "pretitle": "छत्तीसगढ़ की पहचान:",
+    "title": "वैशाली नगर",
+    "subtitle": "का सेवक, Rikesh Sen",
+    "tagline": "Sewa aur vikas ke saath, imaandaari se janta ka vishwas jeetne ka sankalp.",
+    "winningMargin": "Winning Margin (2023): 40,074 Votes"
+  },
+  "parichay": {
+    "title": "मेरा परिचय (About Me)",
+    "subtitle": "श्री रिकेश सेन: एक जीवन, एक मिशन (Shri Rikesh Sen: One Life, One Mission)",
+    "description1": "श्री रिकेश सेन का जीवन संघर्ष, समर्पण और जनता की सेवा का प्रतीक है। साधारण पृष्ठभूमि से आगे बढ़ते हुए, उन्होंने निरंतर मेहनत, ईमानदारी और जनसेवा को अपना मार्ग बनाया। यही प्रतिबद्धता उन्हें सार्वजनिक जीवन के महत्वपूर्ण पद तक लेकर आई है, जहाँ वे समाज के हर वर्ग के लिए कार्य कर रहे हैं।",
+    "description2": "उनकी शिक्षा B.S.P. Higher Secondary School, Bhilai में हुई थी — जो उन्हें अपने क्षेत्र और लोगों से गहराई से जोड़ती है।",
+    "experienceTitle": "अनुभव ही सबसे बड़ी शिक्षा",
+    "experienceDescription": "MLA Sen अपनी 'Elite Academic Credentials' के बजाय 'A Lifetime of Education in Public Service' पर जोर देते हैं। उनका मानना है कि जनता के बीच रहकर काम करने का अनुभव, किसी भी किताब से ज्यादा महत्वपूर्ण होता है।",
+    "quickFacts": {
+      "title": "Quick Facts",
+      "constituency": "Constituency: Vaishali Nagar, Durg (CG)",
+      "party": "Party: Bharatiya Janata Party (BJP)",
+      "winningMargin": "Winning Margin (2023): 40,074 Votes"
+    }
+  },
+  "legislative": {
+    "title": "विधानसभा रिकॉर्ड (Execution Over Debate)",
+    "cards": [
+      {
+        "title": "Assembly Attendance",
+        "value": "100%",
+        "subtitle": "कर्तव्यों के प्रति अटूट समर्पण"
+      },
+      {
+        "title": "Focus on Implementation",
+        "value": "Execution",
+        "subtitle": "सवाल नहीं — सीधे समाधान"
+      },
+      {
+        "title": "Strong Policy Alignment",
+        "value": "Budget",
+        "subtitle": "PM आवास और महतारी वंदन योजना हेतु फंडिंग सुनिश्चित"
+      }
+    ]
+  },
+  "transparency": {
+    "title": "पारदर्शिता और सुशासन",
+    "subtitle": "एक जिम्मेदार और जवाबदेह प्रशासन के लिए प्रतिबद्ध",
+    "tabs": [
+      { "id": "suggestions", "name": "Suggestions" },
+      { "id": "complaints", "name": "Complaints" }
+    ]
+  },
+  "contact": {
+    "title": "संपर्क और शिकायत निवारण (Get In Touch)",
+    "office": {
+      "title": "Office Contact",
+      "details": "Yaha tum office address / phone / email rakh sakte ho."
+    },
+    "form": {
+      "name": "आपका नाम",
+      "mobile": "मोबाइल नंबर",
+      "message": "आपका संदेश/शिकायत",
+      "type": "Type",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Failed to send. Try again later."
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Rikesh Sen, MLA Vaishali Nagar. All Rights Reserved.",
+    "dedication": "Dedicated to Seva and Progress.",
+    "poweredBy": "Powered by the Mandate of {winningMargin}"
+  }
+}
