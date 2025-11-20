@@ -1,33 +1,8 @@
 'use client';
-import { useEffect, useState, useMemo } from "react";
-import Image from "next/image";
-
-const WorkItem = ({ work }) => (
-  <div className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition border-t-4 border-blue-600">
-    <div className="mb-4 w-full h-48 rounded-lg overflow-hidden relative">
-      <Image
-        src={work.imageUrl}
-        alt={work.title}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
-    </div>
-    <h3 className="text-3xl font-bold text-gray-900">{work.title}</h3>
-    <p className="mt-4 text-gray-600">{work.description}</p>
-    {work.link && (
-      <a
-        href={work.link}
-        className="mt-4 inline-block font-bold text-blue-600 hover:text-blue-800"
-      >
-        Read More →
-      </a>
-    )}
-  </div>
-);
+import { useEffect, useState } from "react";
 
 export default function WorkSection() {
-  const [items, setItems] = useState([]);
+  const [works, setWorks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,8 +14,10 @@ export default function WorkSection() {
           throw new Error('Failed to fetch work items');
         }
         const data = await res.json();
-        if (data.success) {
-          setItems(data.items);
+        if (Array.isArray(data)) {
+          setWorks(data);
+        } else {
+          setWorks([]);
         }
       } catch (err) {
         setError(err.message);
@@ -52,24 +29,72 @@ export default function WorkSection() {
     fetchWorkItems();
   }, []);
 
-  const workItems = useMemo(() => items.map(work => <WorkItem key={work._id} work={work} />), [items]);
-
   if (loading) {
-    return <div className="text-center">Loading...</div>;
+    return <div className="text-center py-20">Loading...</div>;
   }
 
   if (error) {
-    return <div className="text-center text-red-500">Error: {error}</div>;
+    return <div className="text-center text-red-500 py-20">Error: {error}</div>;
   }
 
   return (
-    <section id="karya" className="py-12">
-      <h2 className="text-4xl font-extrabold text-gray-900 text-center">
-        वैशाली नगर में मेरा कार्य (Work Portfolio)
-      </h2>
-      <div className="w-24 h-1 bg-[#000080] mx-auto my-4"></div>
-      <div className="mt-10 grid gap-8 lg:grid-cols-2">
-        {workItems}
+    <section id="work" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-extrabold text-[#000080] mb-4 text-devnagari">वैशाली नगर में मेरा कार्य (Work Portfolio)</h2>
+          <div className="w-24 h-1 bg-[#000080] mx-auto"></div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {works.map((work, index) => (
+            <div
+              key={work._id}
+              className={`bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border-t-4 ${index % 2 === 0 ? 'border-pink-500' : 'border-green-600'}`}
+            >
+              <div className="relative h-64 w-full bg-gray-100">
+                {work.imageUrl ? (
+                  <img
+                    src={work.imageUrl}
+                    alt={work.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-gray-400">No Image</div>
+                )}
+              </div>
+
+              <div className="p-8">
+                <div className="flex items-center mb-4">
+                  {/* Dynamic Icon based on index/color */}
+                  <svg
+                    className={`h-8 w-8 ${index % 2 === 0 ? 'text-pink-500' : 'text-green-600'}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <h3 className="ml-3 text-2xl font-bold text-gray-900 text-devnagari">{work.title}</h3>
+                </div>
+
+                <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                  {work.description}
+                </p>
+
+                {work.link && (
+                  <a
+                    href={work.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center font-bold transition-colors ${index % 2 === 0 ? 'text-pink-600 hover:text-pink-800' : 'text-green-600 hover:text-green-800'}`}
+                  >
+                    Read More &rarr;
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

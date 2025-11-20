@@ -26,41 +26,67 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-lg">
+    <header className="sticky top-0 z-50 bg-white shadow-md border-t-4 border-[#ff9933]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
 
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#home" className="flex items-center" onClick={handleSmoothScroll}>
-              <span className="text-3xl font-extrabold text-[#ff9933] mr-2">जय जोहार</span>
-              <span className="text-xl font-bold text-gray-800">| MLA Rikesh Sen</span>
+            <a href="#home" className="flex items-center group" onClick={handleSmoothScroll}>
+              <div className="flex flex-col">
+                <span className="text-2xl font-extrabold text-[#ff9933] leading-none group-hover:text-[#e68a00] transition">जय जोहार</span>
+                <span className="text-sm font-bold text-[#000080] tracking-wider">MLA RIKESH SEN</span>
+              </div>
             </a>
           </div>
 
-          <nav className="hidden md:flex space-x-6 lg:space-x-10">
-            <a href="#home" className="text-lg font-medium text-gray-700 hover:text-blue-800" onClick={handleSmoothScroll}>गृह पृष्ठ</a>
-            <a href="#parichay" className="text-lg font-medium text-gray-700 hover:text-blue-800" onClick={handleSmoothScroll}>परिचय</a>
-            <a href="#karya" className="text-lg font-medium text-gray-700 hover:text-blue-800" onClick={handleSmoothScroll}>मेरा कार्य</a>
-            <a href="#transparency" className="text-lg font-medium text-gray-700 hover:text-blue-800" onClick={handleSmoothScroll}>जवाबदेही</a>
-            <a href="#contact" className="text-lg font-medium text-gray-700 hover:text-blue-800" onClick={handleSmoothScroll}>संपर्क</a>
+          <nav className="hidden md:flex space-x-8">
+            {['गृह पृष्ठ', 'परिचय', 'मेरा कार्य', 'जवाबदेही', 'संपर्क'].map((item, index) => {
+              const hrefs = ['#home', '#parichay', '#karya', '#transparency', '#contact'];
+              return (
+                <a
+                  key={index}
+                  href={hrefs[index]}
+                  className="text-base font-medium text-gray-700 hover:text-[#000080] hover:bg-gray-50 px-3 py-2 rounded-md transition-all duration-200"
+                  onClick={handleSmoothScroll}
+                >
+                  {item}
+                </a>
+              )
+            })}
           </nav>
 
-          <button onClick={toggleMobileMenu} className="md:hidden p-2 bg-gray-100 rounded">
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeWidth="2" d="M4 6h16M4 12h16m-4 6h4" />
-            </svg>
-          </button>
+          <div className="md:hidden">
+            <button onClick={toggleMobileMenu} className="p-2 text-gray-600 hover:text-[#000080] focus:outline-none">
+              <span className="sr-only">Open menu</span>
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-4 6h4" />
+                )}
+              </svg>
+            </button>
+          </div>
 
         </div>
       </div>
 
-      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-gray-50`}>
-        <div className="pt-2 pb-3 space-y-1">
-          <a href="#home" className="block px-3 py-2" onClick={handleSmoothScroll}>गृह पृष्ठ</a>
-          <a href="#parichay" className="block px-3 py-2" onClick={handleSmoothScroll}>परिचय</a>
-          <a href="#karya" className="block px-3 py-2" onClick={handleSmoothScroll}>मेरा कार्य</a>
-          <a href="#transparency" className="block px-3 py-2" onClick={handleSmoothScroll}>जवाबदेही</a>
-          <a href="#contact" className="block px-3 py-2" onClick={handleSmoothScroll}>संपर्क</a>
+      {/* Mobile Menu */}
+      <div className={`${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'} md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-gray-50 border-b border-gray-200`}>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          {['गृह पृष्ठ', 'परिचय', 'मेरा कार्य', 'जवाबदेही', 'संपर्क'].map((item, index) => {
+            const hrefs = ['#home', '#parichay', '#karya', '#transparency', '#contact'];
+            return (
+              <a
+                key={index}
+                href={hrefs[index]}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#000080] hover:bg-gray-100"
+                onClick={handleSmoothScroll}
+              >
+                {item}
+              </a>
+            )
+          })}
         </div>
       </div>
     </header>

@@ -1,28 +1,32 @@
-import { put } from '@vercel/blob';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { writeFile } from "fs/promises";
+import path from "path";
 
 export async function POST(request) {
-  // From Vercel's documentation: https://vercel.com/docs/storage/vercel-blob/using-blob-sdk
-  // The filename is passed as a query parameter.
-  const { searchParams } = new URL(request.url);
-  const filename = searchParams.get('filename');
-
-  if (!filename || !request.body) {
-    return NextResponse.json({ message: 'No filename or file body provided.' }, { status: 400 });
-  }
-
   try {
-    // The actual file content is in the request body.
-    // 'put' uploads the file to Vercel Blob storage.
-    const blob = await put(filename, request.body, {
-      access: 'public', // Make the uploaded file publicly accessible.
-    });
+    const data = await request.formData();
+    const file = data.get("file");
 
-    // Return the blob details, which include the public URL.
-    return NextResponse.json(blob);
+    if (!file) {
+      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    }
+
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Create unique filename
+    const filename = Date.now() + "-" + file.name.replaceAll(" ", "_");
+    const uploadDir = path.join(process.cwd(), "public/uploads");
+    const filePath = path.join(uploadDir, filename);
+
+    await writeFile(filePath, buffer);
+
+    // Return the public URL
+    const url = `/uploads/${filename}`;
+    return NextResponse.json({ url }, { status: 201 });
 
   } catch (error) {
-    console.error("Error uploading to Vercel Blob:", error);
-    return NextResponse.json({ message: 'Error uploading file.', error: error.message }, { status: 500 });
+    console.error("Upload error:", error);
+    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }

@@ -3,25 +3,40 @@
 
 :root {
   --background: #ffffff;
-  --foreground: hsl(0, 0%, 0%);
+  --foreground: #1a1a1a;
+  --primary: #ff9933; /* Saffron */
+  --secondary: #000080; /* Navy Blue */
+  --accent: #f4f4f4;
+  --text-muted: #666666;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-text-muted: var(--text-muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffffc0;
-    --foreground: #000000;
+    --background: #ffffff; /* Force light mode for formal consistency or handle dark mode carefully. Keeping light for now as per standard formal gov sites */
+    --foreground: #1a1a1a;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--secondary);
+}
+

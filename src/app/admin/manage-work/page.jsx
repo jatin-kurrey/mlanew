@@ -55,7 +55,7 @@ export default function ManageWorkPage() {
       title: w.title,
       description: w.description,
       link: w.link,
-      image: w.image,
+      image: w.imageUrl || "", // Map imageUrl to image
     });
     setShowModal(true);
   }
@@ -69,21 +69,36 @@ export default function ManageWorkPage() {
 
     try {
       const method = editItem ? "PUT" : "POST";
-      const body = editItem ? { id: editItem, ...form } : form;
+      // API expects imageUrl, but form uses image. Map it.
+      const payload = {
+        title: form.title,
+        description: form.description,
+        link: form.link,
+        imageUrl: form.image,
+      };
 
-      const res = await fetch("/api/work", {
+      let url = "/api/work";
+      if (editItem) {
+        url = `/api/work/${editItem}`;
+      }
+
+      const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed");
+      }
+
       setShowModal(false);
       await fetchWorks();
       alert(editItem ? "Updated!" : "Created!");
     } catch (err) {
       console.error(err);
-      alert("Error saving");
+      alert("Error saving: " + err.message);
     }
   }
 
@@ -92,10 +107,8 @@ export default function ManageWorkPage() {
     if (!confirm("Delete this work item?")) return;
 
     try {
-      const res = await fetch("/api/work", {
+      const res = await fetch(`/api/work/${id}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
       });
 
       if (!res.ok) throw new Error("Error");
@@ -142,16 +155,14 @@ export default function ManageWorkPage() {
           <tbody>
             {loading ? (
               <tr><td colSpan="6" className="py-6 text-center">Loading...</td></tr>
-            ) : works.length === 0 ? (
-              <tr><td colSpan="6" className="py-6 text-center">No items</td></tr>
             ) : (
               works.map((w, idx) => (
                 <tr key={w._id} className="border-b hover:bg-slate-50">
                   <td className="px-3 py-3">{idx + 1}</td>
 
                   <td className="px-3 py-3">
-                    {w.image ? (
-                      <img src={w.image} className="h-16 w-24 object-cover rounded"/>
+                    {w.imageUrl ? (
+                      <img src={w.imageUrl} className="h-16 w-24 object-cover rounded" />
                     ) : (
                       <div className="h-16 w-24 bg-slate-200 rounded flex items-center justify-center text-slate-500">No Image</div>
                     )}
@@ -190,67 +201,101 @@ export default function ManageWorkPage() {
       </div>
 
       {/* ADD / EDIT MODAL */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white shadow-lg rounded-lg w-[500px] p-6">
+      {
+        showModal && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white shadow-lg rounded-lg w-[500px] p-6">
 
-            <h3 className="text-lg font-semibold mb-4">
-              {editItem ? "Edit Work" : "Add Work"}
-            </h3>
+              <h3 className="text-lg font-semibold mb-4">
+                {editItem ? "Edit Work" : "Add Work"}
+              </h3>
 
-            {/* FORM */}
-            <div className="space-y-3">
-              <input
-                className="w-full border px-3 py-2 rounded"
-                placeholder="Title"
-                value={form.title}
-                onChange={(e) => setForm({ ...form, title: e.target.value })}
-              />
+              {/* FORM */}
+              <div className="space-y-3">
+                <input
+                  className="w-full border px-3 py-2 rounded"
+                  placeholder="Title"
+                  value={form.title}
+                  onChange={(e) => setForm({ ...form, title: e.target.value })}
+                />
 
-              <textarea
-                className="w-full border px-3 py-2 rounded"
-                placeholder="Description"
-                rows={4}
-                value={form.description}
-                onChange={(e) => setForm({ ...form, description: e.target.value })}
-              />
+                <textarea
+                  className="w-full border px-3 py-2 rounded"
+                  placeholder="Description"
+                  rows={4}
+                  value={form.description}
+                  onChange={(e) => setForm({ ...form, description: e.target.value })}
+                />
 
-              <input
-                className="w-full border px-3 py-2 rounded"
-                placeholder="Image URL"
-                value={form.image}
-                onChange={(e) => setForm({ ...form, image: e.target.value })}
-              />
+                {/* IMAGE UPLOAD */}
+                <div className="border px-3 py-2 rounded">
+                  <label className="block text-sm text-gray-600 mb-1">Work Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
 
-              <input
-                className="w-full border px-3 py-2 rounded"
-                placeholder="Link"
-                value={form.link}
-                onChange={(e) => setForm({ ...form, link: e.target.value })}
-              />
+                      // Upload immediately
+                      const data = new FormData();
+                      data.append("file", file);
+
+                      try {
+                        const res = await fetch("/api/upload", {
+                          method: "POST",
+                          body: data,
+                        });
+                        const json = await res.json();
+                        if (json.url) {
+                          setForm(prev => ({ ...prev, image: json.url }));
+                        } else {
+                          alert("Upload failed");
+                        }
+                      } catch (err) {
+                        console.error(err);
+                        alert("Upload error");
+                      }
+                    }}
+                  />
+                  {form.image && (
+                    <div className="mt-2">
+                      <img src={form.image} alt="Preview" className="h-20 w-auto rounded border" />
+                      <p className="text-xs text-green-600 mt-1">Image uploaded successfully</p>
+                    </div>
+                  )}
+                </div>
+
+                <input
+                  className="w-full border px-3 py-2 rounded"
+                  placeholder="Link"
+                  value={form.link}
+                  onChange={(e) => setForm({ ...form, link: e.target.value })}
+                />
+              </div>
+
+              {/* BUTTONS */}
+              <div className="flex justify-end mt-6 gap-3">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="px-3 py-2 bg-gray-200 rounded"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  onClick={saveWork}
+                  className="px-3 py-2 bg-blue-600 text-white rounded"
+                >
+                  Save
+                </button>
+              </div>
+
             </div>
-
-            {/* BUTTONS */}
-            <div className="flex justify-end mt-6 gap-3">
-              <button
-                onClick={() => setShowModal(false)}
-                className="px-3 py-2 bg-gray-200 rounded"
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={saveWork}
-                className="px-3 py-2 bg-blue-600 text-white rounded"
-              >
-                Save
-              </button>
-            </div>
-
           </div>
-        </div>
-      )}
+        )
+      }
 
-    </div>
+    </div >
   );
 }

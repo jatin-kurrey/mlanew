@@ -3,19 +3,47 @@ import home from "@/lib/home.json";
 export default function Footer() {
   const { parichay } = home;
   return (
-    <footer className="mt-20 bg-gray-800 text-white">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+    <footer className="bg-[#1a1a1a] text-white pt-16 pb-8 border-t-4 border-[#ff9933]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
 
-        <p className="text-lg">
-          © 2025 Rikesh Sen, MLA Vaishali Nagar. All Rights Reserved. |{" "}
-          <span className="text-[#ff9933] font-semibold">
-            Dedicated to Seva and Progress.
-          </span>
-        </p>
+          {/* Column 1: Brand */}
+          <div>
+            <h3 className="text-2xl font-bold text-[#ff9933] mb-4">MLA Rikesh Sen</h3>
+            <p className="text-gray-400 leading-relaxed">
+              Dedicated to the service and development of Vaishali Nagar. Working tirelessly for a prosperous and transparent constituency.
+            </p>
+          </div>
 
-        <p className="mt-2 text-sm text-gray-400"
+          {/* Column 2: Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><a href="#home" className="text-gray-400 hover:text-[#ff9933] transition">Home</a></li>
+              <li><a href="#parichay" className="text-gray-400 hover:text-[#ff9933] transition">About</a></li>
+              <li><a href="#karya" className="text-gray-400 hover:text-[#ff9933] transition">Work</a></li>
+              <li><a href="#contact" className="text-gray-400 hover:text-[#ff9933] transition">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">Contact Office</h4>
+            <p className="text-gray-400 mb-2">Vaishali Nagar Constituency Office</p>
+            <p className="text-gray-400 mb-2">Bhilai, Chhattisgarh</p>
+            <a href="mailto:contact@rikeshsen.com" className="text-[#ff9933] hover:underline">contact@rikeshsen.com</a>
+          </div>
+
+        </div>
+
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-sm text-gray-500">
+            © 2025 Rikesh Sen, MLA Vaishali Nagar. All Rights Reserved.
+          </p>
+          <p className="mt-2 text-xs text-gray-600"
             dangerouslySetInnerHTML={{ __html: `Powered by the Mandate of ${parichay.quickFacts.winningMargin.split(':')[1]}` }}>
-        </p>
+          </p>
+        </div>
 
       </div>
     </footer>

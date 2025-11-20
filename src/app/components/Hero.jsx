@@ -1,42 +1,59 @@
-  import Image from "next/image";
+import Image from "next/image";
 import img1 from "../images/img1.png";
 import home from "@/lib/home.json";
 
 export default function Hero() {
   const { parichay } = home;
   return (
-    <section id="home" className="py-12 md:py-16 bg-white rounded-xl shadow-2xl overflow-hidden">
-    
-      <div className="lg:grid grid-cols-3 gap-10 items-center p-6 sm:p-10">
+    <section id="home" className="relative py-16 md:py-24 bg-gradient-to-br from-orange-50 to-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
-        {/* Left Text */}
-        <div className="col-span-2 order-2 lg:order-1">
-          <p className="text-2xl font-semibold text-[#000080]">छत्तीसगढ़ की पहचान:</p>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl mt-4 font-extrabold tracking-tight text-gray-900 leading-tight">
-            <span className="text-[#ff9933] block">वैशाली नगर</span>
-            <span className="text-[#000080] block mt-2">का सेवक, Rikesh Sen</span>
-          </h1>
+          {/* Left Text */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            <div className="inline-block px-4 py-1 mb-4 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold tracking-wide uppercase">
+              जनता की आवाज़
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6">
+              <span className="block text-[#ff9933]">वैशाली नगर</span>
+              <span className="block text-[#000080] mt-2">का सेवक, Rikesh Sen</span>
+            </h1>
 
-          <p className="mt-4 text-xl text-gray-600 font-medium italic">
-            Sewa aur vikas ke saath, imaandaari se janta ka vishwas jeetne ka sankalp.
-          </p>
+            <p className="mt-4 text-xl text-gray-600 font-medium italic max-w-2xl mx-auto lg:mx-0">
+              "सेवा और विकास के साथ, ईमानदारी से जनता का विश्वास जीतने का संकल्प।"
+            </p>
 
-          <div className="mt-8">
-            <div className="inline-block px-6 py-3 bg-[#000080] text-white rounded-lg font-bold text-lg shadow-lg"
-              dangerouslySetInnerHTML={{ __html: parichay.quickFacts.winningMargin }}>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="px-8 py-4 bg-[#000080] text-white rounded-lg font-bold text-lg shadow-lg transform hover:-translate-y-1 transition duration-300"
+                dangerouslySetInnerHTML={{ __html: parichay.quickFacts.winningMargin }}>
+              </div>
+              <a href="#contact" className="px-8 py-4 bg-white text-[#000080] border-2 border-[#000080] rounded-lg font-bold text-lg shadow-md hover:bg-gray-50 transition duration-300">
+                संपर्क करें
+              </a>
             </div>
           </div>
-        </div>
 
-        {/* Right Image */}
-        <div className="col-span-1 order-1 lg:order-2 mb-8 lg:mb-0 flex justify-center">
-          <div className="w-64 h-64 sm:w-80 sm:h-80 bg-gray-200 rounded-[75px] overflow-hidden border-8 border-[#ff9933] shadow-xl">
-            
-           <Image src={img1} alt="Description of the image" />
+          {/* Right Image */}
+          <div className="lg:col-span-5 mt-12 lg:mt-0 flex justify-center relative">
+            <div className="relative w-72 h-72 sm:w-96 sm:h-96">
+              <div className="absolute inset-0 bg-[#ff9933] rounded-[2rem] rotate-6 opacity-20 blur-xl"></div>
+              <div className="relative w-full h-full bg-white rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl">
+                <Image
+                  src={img1}
+                  alt="MLA Rikesh Sen"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority
+                />
+              </div>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );
