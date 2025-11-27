@@ -1,32 +1,61 @@
 import { NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+import { requireAuth } from "@/lib/auth";
 
-export async function POST(request) {
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
+
+export async function POST(req) {
+  console.log("Upload API called");
+  console.log("Cloud Name present:", !!process.env.CLOUDINARY_CLOUD_NAME);
+  console.log("API Key present:", !!process.env.CLOUDINARY_API_KEY);
+  console.log("API Secret present:", !!process.env.CLOUDINARY_API_SECRET);
+
+  const authResult = await requireAuth();
+  if (authResult instanceof NextResponse) return authResult;
+
   try {
-    const data = await request.formData();
-    const file = data.get("file");
+    const formData = await req.formData();
+    const file = formData.get("file");
 
     if (!file) {
-      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+      return NextResponse.json({ success: false, error: "No file uploaded" }, { status: 400 });
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // Validation
+    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+    if (file.size > MAX_SIZE) {
+      return NextResponse.json({ success: false, error: "File too large (max 5MB)" }, { status: 400 });
+    }
 
-    // Create unique filename
-    const filename = Date.now() + "-" + file.name.replaceAll(" ", "_");
-    const uploadDir = path.join(process.cwd(), "public/uploads");
-    const filePath = path.join(uploadDir, filename);
+    if (!file.type.startsWith("image/")) {
+      return NextResponse.json({ success: false, error: "Invalid file type (images only)" }, { status: 400 });
+    }
 
-    await writeFile(filePath, buffer);
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
-    // Return the public URL
-    const url = `/uploads/${filename}`;
-    return NextResponse.json({ url }, { status: 201 });
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { folder: "mla_website" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      ).end(buffer);
+    });
 
+    return NextResponse.json({ success: true, url: result.secure_url });
   } catch (error) {
-    console.error("Upload error:", error);
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+    console.error("Upload error details:", error);
+    return NextResponse.json({
+      success: false,
+      error: error.message || "Upload failed",
+      details: error
+    }, { status: 500 });
   }
 }

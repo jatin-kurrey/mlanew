@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ImageUpload from "@/components/admin/ImageUpload";
 
 export default function AddWorkPage() {
   const router = useRouter();
@@ -10,25 +11,19 @@ export default function AddWorkPage() {
     title: "",
     description: "",
     link: "",
+    imageUrl: "",
   });
 
-  const [imageFile, setImageFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      setImageFile(e.target.files[0]);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!imageFile) {
+    if (!form.imageUrl) {
       alert("Please select an image file!");
       return;
     }
@@ -36,19 +31,8 @@ export default function AddWorkPage() {
     setIsSubmitting(true);
 
     try {
-      // STEP 1: Upload image to Vercel Blob
-      const uploadResponse = await fetch(`/api/upload?filename=${imageFile.name}`, {
-        method: "POST",
-        body: imageFile,
-      });
-
-      if (!uploadResponse.ok) throw new Error("Image upload failed");
-
-      const uploadJson = await uploadResponse.json();
-
       const finalData = {
         ...form,
-        imageUrl: uploadJson.url,
       };
 
       // STEP 2: Save work entry to DB
@@ -115,15 +99,10 @@ export default function AddWorkPage() {
         {/* IMAGE INPUT */}
         <div>
           <label className="block font-semibold mb-1">Work Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-            disabled={isSubmitting}
-            className="w-full border rounded p-2"
+          <ImageUpload
+            value={form.imageUrl}
+            onChange={(url) => setForm({ ...form, imageUrl: url })}
           />
-          {imageFile && <p className="text-sm text-gray-500 mt-1">Selected: {imageFile.name}</p>}
         </div>
 
         <button

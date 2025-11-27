@@ -27,18 +27,22 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log("Attempting login with:", email, password);
       const res = await signIn("credentials", {
         redirect: false,
         email,
         password,
       });
+      console.log("Login response:", res);
       setLoading(false);
 
       if (res?.error) {
+        console.error("Login error from response:", res.error);
         alert("Invalid credentials");
         return;
       }
       // success
+      console.log("Login successful, redirecting...");
       router.push("/admin");
     } catch (err) {
       console.error(err);

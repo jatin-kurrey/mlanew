@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ImageUpload from "@/components/admin/ImageUpload";
 
 /**
  * MANAGE WORK PAGE (FULL PROFESSIONAL + CRUD)
@@ -89,8 +90,9 @@ export default function ManageWorkPage() {
       });
 
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Failed");
+        const err = await res.json().catch(() => ({}));
+        // Prefer the server 'message' if present; fall back to 'error'
+        throw new Error(err.message || err.error || "Failed");
       }
 
       setShowModal(false);
@@ -230,40 +232,10 @@ export default function ManageWorkPage() {
                 {/* IMAGE UPLOAD */}
                 <div className="border px-3 py-2 rounded">
                   <label className="block text-sm text-gray-600 mb-1">Work Image</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (!file) return;
-
-                      // Upload immediately
-                      const data = new FormData();
-                      data.append("file", file);
-
-                      try {
-                        const res = await fetch("/api/upload", {
-                          method: "POST",
-                          body: data,
-                        });
-                        const json = await res.json();
-                        if (json.url) {
-                          setForm(prev => ({ ...prev, image: json.url }));
-                        } else {
-                          alert("Upload failed");
-                        }
-                      } catch (err) {
-                        console.error(err);
-                        alert("Upload error");
-                      }
-                    }}
+                  <ImageUpload
+                    value={form.image}
+                    onChange={(url) => setForm({ ...form, image: url })}
                   />
-                  {form.image && (
-                    <div className="mt-2">
-                      <img src={form.image} alt="Preview" className="h-20 w-auto rounded border" />
-                      <p className="text-xs text-green-600 mt-1">Image uploaded successfully</p>
-                    </div>
-                  )}
                 </div>
 
                 <input

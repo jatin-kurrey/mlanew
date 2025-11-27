@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function WorkSection() {
   const [works, setWorks] = useState([]);
@@ -34,7 +35,7 @@ export default function WorkSection() {
   }
 
   if (error) {
-    return <div className="text-center text-red-500 py-20">Error: {error}</div>;
+    return <div className="text-center text-black py-20">No Data Found</div>;
   }
 
   return (
@@ -53,10 +54,11 @@ export default function WorkSection() {
             >
               <div className="relative h-64 w-full bg-gray-100">
                 {work.imageUrl ? (
-                  <img
+                  <Image
                     src={work.imageUrl}
                     alt={work.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 ) : (
                   <div className="flex items-center justify-center h-full text-gray-400">No Image</div>

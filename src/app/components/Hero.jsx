@@ -2,8 +2,13 @@ import Image from "next/image";
 import img1 from "../images/img1.png";
 import home from "@/lib/home.json";
 
-export default function Hero() {
+export default function Hero({ config }) {
   const { parichay } = home;
+
+  const title = config?.heroTitle || "वैशाली नगर का सेवक, Rikesh Sen";
+  const subtitle = config?.heroSubtitle || '"सेवा और विकास के साथ, ईमानदारी से जनता का विश्वास जीतने का संकल्प।"';
+  const imageSrc = config?.heroImage || img1;
+
   return (
     <section id="home" className="relative py-16 md:py-24 bg-gradient-to-br from-orange-50 to-white overflow-hidden">
       {/* Background Pattern */}
@@ -18,12 +23,15 @@ export default function Hero() {
               जनता की आवाज़
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6">
-              <span className="block text-[#ff9933]">वैशाली नगर</span>
-              <span className="block text-[#000080] mt-2">का सेवक, Rikesh Sen</span>
+              {title.split(',').map((part, i) => (
+                <span key={i} className={`block ${i === 0 ? 'text-[#ff9933]' : 'text-[#000080] mt-2'}`}>
+                  {part.trim()}{i === 0 && ','}
+                </span>
+              ))}
             </h1>
 
             <p className="mt-4 text-xl text-gray-600 font-medium italic max-w-2xl mx-auto lg:mx-0">
-              "सेवा और विकास के साथ, ईमानदारी से जनता का विश्वास जीतने का संकल्प।"
+              {subtitle}
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -42,7 +50,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-[#ff9933] rounded-[2rem] rotate-6 opacity-20 blur-xl"></div>
               <div className="relative w-full h-full bg-white rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl">
                 <Image
-                  src={img1}
+                  src={imageSrc}
                   alt="MLA Rikesh Sen"
                   fill
                   className="object-cover"

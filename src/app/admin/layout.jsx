@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 import {
   Menu,
@@ -14,10 +14,16 @@ import {
   PlusSquare,
   LogOut,
   Bell,
+  Calendar,
+  BookOpen,
+  Image,
+  PenTool,
+  User,
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
   const { status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
@@ -53,7 +59,27 @@ export default function AdminLayout({ children }) {
     { title: "Dashboard", href: "/admin", icon: <LayoutDashboard size={20} /> },
     { title: "Complaints", href: "/admin/complaints", icon: <FileText size={20} /> },
     { title: "Manage Work", href: "/admin/manage-work", icon: <Folder size={20} /> },
+    { title: "Events", href: "/admin/events", icon: <Calendar size={20} /> },
+    { title: "Schemes", href: "/admin/schemes", icon: <BookOpen size={20} /> },
+    { title: "Media Center", href: "/admin/media", icon: <Image size={20} /> },
+    { title: "Blog", href: "/admin/blog", icon: <PenTool size={20} /> },
+    { title: "Profile", href: "/admin/profile", icon: <User size={20} /> },
   ];
+
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true);
+      await signOut({
+        redirect: true,
+        callbackUrl: "/admin/login"
+      });
+    } catch (error) {
+      console.error("Logout error:", error);
+      setLoggingOut(false);
+      // Fallback: still redirect to login even if signOut fails
+      router.push("/admin/login");
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-50 text-slate-900 font-sans">
@@ -104,13 +130,19 @@ export default function AdminLayout({ children }) {
         {/* Logout */}
         <div className="p-4 border-t border-white/10 bg-[#000066]">
           <button
-            onClick={() => {
-              router.push("/admin/login");
-            }}
-            className="flex items-center gap-3 px-4 py-3 w-full hover:bg-red-500/20 text-red-300 hover:text-red-100 rounded-lg transition-colors"
+            onClick={handleLogout}
+            disabled={loggingOut}
+            className="flex items-center gap-3 px-4 py-3 w-full hover:bg-red-500/20 text-red-300 hover:text-red-100 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <LogOut size={20} />
-            {!collapsed && <span className="font-medium">Logout</span>}
+            {loggingOut ? (
+              <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            ) : (
+              <LogOut size={20} />
+            )}
+            {!collapsed && <span className="font-medium">{loggingOut ? "Logging out..." : "Logout"}</span>}
           </button>
         </div>
       </aside>

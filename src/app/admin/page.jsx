@@ -51,7 +51,7 @@ export default function AdminDashboard() {
       {/* Dashboard Title */}
       <div>
         <h2 className="text-2xl font-bold text-gray-800">Overview</h2>
-        <p className="text-gray-500">Welcome back, here's what's happening today.</p>
+        <p className="text-gray-500">Welcome back, here&apos;s what&apos;s happening today.</p>
       </div>
 
       {/* Stats Cards */}
