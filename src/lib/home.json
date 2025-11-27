@@ -13,72 +13,72 @@
   "hero": {
     "pretitle": "छत्तीसगढ़ की पहचान:",
     "title": "वैशाली नगर",
-    "subtitle": "का सेवक, Rikesh Sen",
-    "tagline": "Sewa aur vikas ke saath, imaandaari se janta ka vishwas jeetne ka sankalp.",
-    "winningMargin": "Winning Margin (2023): 40,074 Votes"
+    "subtitle": "के सेवक, Rikesh Sen",
+    "tagline": "Viksit Vaishali Nagar - Samriddh Bhilai. Sewa, Samarpan aur Sushasan.",
+    "winningMargin": "Historic Victory Margin: 40,074 Votes"
   },
   "parichay": {
     "title": "मेरा परिचय (About Me)",
-    "subtitle": "श्री रिकेश सेन: एक जीवन, एक मिशन (Shri Rikesh Sen: One Life, One Mission)",
-    "description1": "श्री रिकेश सेन का जीवन संघर्ष, समर्पण और जनता की सेवा का प्रतीक है। साधारण पृष्ठभूमि से आगे बढ़ते हुए, उन्होंने निरंतर मेहनत, ईमानदारी और जनसेवा को अपना मार्ग बनाया। यही प्रतिबद्धता उन्हें सार्वजनिक जीवन के महत्वपूर्ण पद तक लेकर आई है, जहाँ वे समाज के हर वर्ग के लिए कार्य कर रहे हैं।",
-    "description2": "उनकी शिक्षा B.S.P. Higher Secondary School, Bhilai में हुई थी — जो उन्हें अपने क्षेत्र और लोगों से गहराई से जोड़ती है।",
-    "experienceTitle": "अनुभव ही सबसे बड़ी शिक्षा",
-    "experienceDescription": "MLA Sen अपनी 'Elite Academic Credentials' के बजाय 'A Lifetime of Education in Public Service' पर जोर देते हैं। उनका मानना है कि जनता के बीच रहकर काम करने का अनुभव, किसी भी किताब से ज्यादा महत्वपूर्ण होता है।",
+    "subtitle": "श्री रिकेश सेन: जनसेवा को समर्पित एक जीवन (Shri Rikesh Sen: A Life Dedicated to Service)",
+    "description1": "श्री रिकेश सेन का राजनीतिक सफर जमीनी स्तर से शुरू हुआ। भिलाई नगर निगम में लगातार 5 बार पार्षद (Corporator) चुने जाने का कीर्तिमान और नेता प्रतिपक्ष (Leader of Opposition) के रूप में उनकी सक्रिय भूमिका ने उन्हें जनता का चहेता बना दिया। उनका यह अनुभव शहरी विकास और जनसमस्याओं की गहरी समझ को दर्शाता है।",
+    "description2": "2023 के विधानसभा चुनाव में वैशाली नगर की जनता ने उन्हें 40,074 मतों के ऐतिहासिक अंतर से विजयी बनाकर विधानसभा भेजा। वर्तमान में वे भाजपा पिछड़ा वर्ग मोर्चा के प्रदेश मंत्री भी हैं। उनका संकल्प वैशाली नगर को छत्तीसगढ़ का सबसे विकसित और आदर्श विधानसभा क्षेत्र बनाना है।",
+    "experienceTitle": "From Corporator to MLA: A Journey of Service",
+    "experienceDescription": "Serving 5 consecutive terms as Corporator and as Leader of Opposition in Bhilai Municipal Corporation provided me with deep insights into urban governance. Today, as MLA, I am applying this grassroots experience to implement systemic changes, ensuring 'Sabka Saath, Sabka Vikas' in Vaishali Nagar.",
     "quickFacts": {
-      "title": "Quick Facts",
-      "constituency": "Constituency: Vaishali Nagar, Durg (CG)",
-      "party": "Party: Bharatiya Janata Party (BJP)",
-      "winningMargin": "Winning Margin (2023): 40,074 Votes"
+      "title": "Key Milestones",
+      "constituency": "Constituency: Vaishali Nagar (No. 66), Bhilai",
+      "party": "Role: MLA (BJP) & State Minister (OBC Morcha)",
+      "winningMargin": "Victory Margin: 40,074 Votes (2023)"
     }
   },
   "legislative": {
-    "title": "विधानसभा रिकॉर्ड (Execution Over Debate)",
+    "title": "विधायी उपलब्धियां (Legislative Achievements)",
     "cards": [
       {
-        "title": "Assembly Attendance",
-        "value": "100%",
-        "subtitle": "कर्तव्यों के प्रति अटूट समर्पण"
+        "title": "Development Fund",
+        "value": "₹24.29 Cr",
+        "subtitle": "Approved for Infrastructure & Beautification"
       },
       {
-        "title": "Focus on Implementation",
-        "value": "Execution",
-        "subtitle": "सवाल नहीं — सीधे समाधान"
+        "title": "Community Reach",
+        "value": "37 Wards",
+        "subtitle": "'Shakti Teams' Active in Every Ward"
       },
       {
-        "title": "Strong Policy Alignment",
-        "value": "Budget",
-        "subtitle": "PM आवास और महतारी वंदन योजना हेतु फंडिंग सुनिश्चित"
+        "title": "Healthcare",
+        "value": "Ambulance",
+        "subtitle": "2 Ventilator Ambulances Donated to Public"
       }
     ]
   },
   "transparency": {
     "title": "पारदर्शिता और सुशासन",
-    "subtitle": "एक जिम्मेदार और जवाबदेह प्रशासन के लिए प्रतिबद्ध",
+    "subtitle": "Direct Connection with Every Citizen",
     "tabs": [
-      { "id": "suggestions", "name": "Suggestions" },
-      { "id": "complaints", "name": "Complaints" }
+      { "id": "suggestions", "name": "सुझाव (Suggestions)" },
+      { "id": "complaints", "name": "शिकायत (Complaints)" }
     ]
   },
   "contact": {
-    "title": "संपर्क और शिकायत निवारण (Get In Touch)",
+    "title": "संपर्क करें (Get In Touch)",
     "office": {
-      "title": "Office Contact",
-      "details": "Yaha tum office address / phone / email rakh sakte ho."
+      "title": "Constituency Office",
+      "details": "EWS-632, Behind Govt Hospital, Vaishali Nagar, Bhilai, Durg (CG) - 490023"
     },
     "form": {
       "name": "आपका नाम",
       "mobile": "मोबाइल नंबर",
       "message": "आपका संदेश/शिकायत",
-      "type": "Type",
-      "submit": "Send Message",
-      "sending": "Sending...",
-      "success": "Message sent successfully!",
-      "error": "Failed to send. Try again later."
+      "type": "विषय (Subject)",
+      "submit": "संदेश भेजें",
+      "sending": "भेजा जा रहा है...",
+      "success": "संदेश सफलतापूर्वक भेजा गया!",
+      "error": "त्रुटि। कृपया पुनः प्रयास करें।"
     }
   },
   "footer": {
     "copyright": "© 2025 Rikesh Sen, MLA Vaishali Nagar. All Rights Reserved.",
-    "dedication": "Dedicated to Seva and Progress.",
+    "dedication": "Dedicated to the People of Bhilai.",
     "poweredBy": "Powered by the Mandate of {winningMargin}"
   }
 }

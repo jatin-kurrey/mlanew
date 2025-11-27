@@ -67,14 +67,14 @@ export default function ProfilePage() {
     return (
         <div className="p-6">
             <h1 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                <User className="text-[#ff9933]" /> Profile & Site Configuration
+                <User className="text-[#1e3a8a]" /> Profile & Site Configuration
             </h1>
 
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 space-y-6">
 
                 {/* Hero Section */}
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold text-[#000080] border-b pb-2">Landing Page (Hero Section)</h2>
+                    <h2 className="text-xl font-semibold text-[#1e3a8a] border-b pb-2">Landing Page (Hero Section)</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-4">
@@ -82,7 +82,7 @@ export default function ProfilePage() {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Hero Title</label>
                                 <input
                                     type="text"
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] outline-none"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] outline-none"
                                     value={formData.heroTitle}
                                     onChange={(e) => setFormData({ ...formData, heroTitle: e.target.value })}
                                 />
@@ -91,7 +91,7 @@ export default function ProfilePage() {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Hero Subtitle</label>
                                 <textarea
                                     rows="3"
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] outline-none"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] outline-none"
                                     value={formData.heroSubtitle}
                                     onChange={(e) => setFormData({ ...formData, heroSubtitle: e.target.value })}
                                 ></textarea>
@@ -110,13 +110,13 @@ export default function ProfilePage() {
 
                 {/* Personal Info */}
                 <div className="space-y-4 pt-4">
-                    <h2 className="text-xl font-semibold text-[#000080] border-b pb-2">Personal Information</h2>
+                    <h2 className="text-xl font-semibold text-[#1e3a8a] border-b pb-2">Personal Information</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">MLA Name</label>
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] outline-none"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] outline-none"
                                 value={formData.mlaName}
                                 onChange={(e) => setFormData({ ...formData, mlaName: e.target.value })}
                             />
@@ -125,7 +125,7 @@ export default function ProfilePage() {
                             <label className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] outline-none"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] outline-none"
                                 value={formData.mlaDesignation}
                                 onChange={(e) => setFormData({ ...formData, mlaDesignation: e.target.value })}
                             />
@@ -134,7 +134,7 @@ export default function ProfilePage() {
                             <label className="block text-sm font-medium text-gray-700 mb-1">Contact Email</label>
                             <input
                                 type="email"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] outline-none"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] outline-none"
                                 value={formData.contactEmail}
                                 onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
                             />
@@ -143,7 +143,7 @@ export default function ProfilePage() {
                             <label className="block text-sm font-medium text-gray-700 mb-1">Contact Phone</label>
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] outline-none"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] outline-none"
                                 value={formData.contactPhone}
                                 onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
                             />
@@ -155,7 +155,7 @@ export default function ProfilePage() {
                     <button
                         type="submit"
                         disabled={saving}
-                        className="bg-[#000080] text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-900 transition-colors flex items-center gap-2 disabled:opacity-70"
+                        className="bg-[#1e3a8a] text-white px-6 py-2 rounded-lg font-bold hover:bg-[#1e40af] transition-colors flex items-center gap-2 disabled:opacity-70"
                     >
                         {saving ? "Saving..." : <><Save size={20} /> Save Changes</>}
                     </button>

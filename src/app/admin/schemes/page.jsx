@@ -79,7 +79,7 @@ export default function SchemesPage() {
                 <h1 className="text-2xl font-bold text-gray-800">Schemes Management</h1>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="bg-[#ff9933] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#e68a00] transition-colors"
+                    className="bg-[#1e3a8a] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#e68a00] transition-colors"
                 >
                     <Plus size={20} /> Add Scheme
                 </button>
@@ -95,7 +95,7 @@ export default function SchemesPage() {
                                 <input
                                     type="text"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 />
@@ -103,7 +103,7 @@ export default function SchemesPage() {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
                                 <select
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.category}
                                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                                 >
@@ -116,7 +116,7 @@ export default function SchemesPage() {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Eligibility</label>
                                 <input
                                     type="text"
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.eligibility}
                                     onChange={(e) => setFormData({ ...formData, eligibility: e.target.value })}
                                 />
@@ -125,7 +125,7 @@ export default function SchemesPage() {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Apply Link</label>
                                 <input
                                     type="url"
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.applyLink}
                                     onChange={(e) => setFormData({ ...formData, applyLink: e.target.value })}
                                 />
@@ -135,7 +135,7 @@ export default function SchemesPage() {
                             <label className="block text-sm font-medium text-gray-700 mb-1">Required Documents</label>
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                 placeholder="Comma separated list"
                                 value={formData.documents}
                                 onChange={(e) => setFormData({ ...formData, documents: e.target.value })}
@@ -146,7 +146,7 @@ export default function SchemesPage() {
                             <textarea
                                 required
                                 rows="3"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             ></textarea>
@@ -161,7 +161,7 @@ export default function SchemesPage() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-4 py-2 bg-[#000080] text-white rounded-lg hover:bg-blue-900"
+                                className="px-4 py-2 bg-[#1e3a8a] text-white rounded-lg hover:bg-[#1e40af]"
                             >
                                 Save Scheme
                             </button>
@@ -191,7 +191,7 @@ export default function SchemesPage() {
                                         </div>
                                     )}
                                     {scheme.applyLink && (
-                                        <a href={scheme.applyLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#ff9933] hover:underline">
+                                        <a href={scheme.applyLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#1e3a8a] hover:underline">
                                             <LinkIcon size={14} /> Apply Online
                                         </a>
                                     )}

@@ -6,26 +6,14 @@ const LegislativeCard = ({ title, value, subtitle, borderColor }) => (
   </div>
 );
 
-const legislativeData = [
-  {
-    title: "Assembly Attendance",
-    value: "100%",
-    subtitle: "कर्तव्यों के प्रति अटूट समर्पण",
-    borderColor: "border-[#000080]",
-  },
-  {
-    title: "Focus on Implementation",
-    value: "Execution",
-    subtitle: "सवाल नहीं — सीधे समाधान",
-    borderColor: "border-[#ff9933]",
-  },
-  {
-    title: "Strong Policy Alignment",
-    value: "Budget",
-    subtitle: "PM आवास और महतारी वंदन योजना हेतु फंडिंग सुनिश्चित",
-    borderColor: "border-[#000080]",
-  },
-];
+import home from "@/lib/home.json";
+
+const legislativeData = home.legislative.cards.map(card => ({
+  title: card.title,
+  value: card.value,
+  subtitle: card.subtitle,
+  borderColor: "border-[#1e3a8a]",
+}));
 
 export default function Legislative() {
   return (
@@ -33,7 +21,7 @@ export default function Legislative() {
       <h2 className="text-4xl font-extrabold text-gray-900 text-center">
         विधानसभा रिकॉर्ड (Execution Over Debate)
       </h2>
-      <div className="w-24 h-1 bg-[#000080] mx-auto my-4"></div>
+      <div className="w-24 h-1 bg-[#1e3a8a] mx-auto my-4"></div>
       <div className="mt-10 grid gap-8 md:grid-cols-3 text-center">
         {legislativeData.map((card, index) => (
           <LegislativeCard key={index} {...card} />

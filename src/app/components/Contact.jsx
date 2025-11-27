@@ -21,7 +21,7 @@ export default function Contact() {
   const [form, setForm] = useState({
     name: "",
     mobile: "",
-    type: "Suggestion",
+    type: "suggestion",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -43,7 +43,10 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          type: form.type.toLowerCase() // Ensure lowercase for DB enum
+        }),
       });
 
       if (!res.ok) {
@@ -58,7 +61,7 @@ export default function Contact() {
       }
 
       setSuccess("Message sent successfully!");
-      setForm({ name: "", mobile: "", type: "Suggestion", message: "" });
+      setForm({ name: "", mobile: "", type: "suggestion", message: "" });
     } catch (err) {
       setError(err.message || "Failed to send. Try again later.");
       console.error(err);
@@ -78,11 +81,11 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#000080]">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e3a8a]">
             संपर्क और शिकायत निवारण
           </h2>
           <p className="mt-4 text-xl text-gray-600">Get In Touch / Grievance Redressal</p>
-          <div className="w-24 h-1.5 bg-[#ff9933] mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1.5 bg-[#1e3a8a] mx-auto mt-6 rounded-full"></div>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2 items-start">
@@ -96,7 +99,7 @@ export default function Contact() {
                   {...field}
                   value={form[field.name]}
                   onChange={handleChange}
-                  className="w-full p-4 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent outline-none transition"
+                  className="w-full p-4 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent outline-none transition"
                 />
               ))}
 
@@ -105,11 +108,11 @@ export default function Contact() {
                   name="type"
                   value={form.type}
                   onChange={handleChange}
-                  className="w-full p-4 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent outline-none appearance-none transition"
+                  className="w-full p-4 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent outline-none appearance-none transition"
                 >
-                  <option>Suggestion</option>
-                  <option>Complaint</option>
-                  <option>Other</option>
+                  <option value="suggestion">Suggestion</option>
+                  <option value="complaint">Complaint</option>
+                  <option value="other">Other</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
                   <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -118,7 +121,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-[#000080] to-blue-900 text-white font-bold rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full px-8 py-4 bg-gradient-to-r from-[#1e3a8a] to-[#1e40af] text-white font-bold rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                 disabled={loading}
               >
                 {loading ? (
@@ -148,15 +151,15 @@ export default function Contact() {
           </div>
 
           {/* Contact Info Card */}
-          <div className="bg-[#000080] text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-[#ff9933] rounded-full opacity-20 blur-2xl"></div>
+          <div className="bg-[#1e3a8a] text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-[#1e3a8a] rounded-full opacity-20 blur-2xl"></div>
 
             <h3 className="text-2xl font-bold mb-8 relative z-10">Contact Information</h3>
 
             <div className="space-y-6 relative z-10">
               <div className="flex items-start">
                 <div className="bg-white/10 p-3 rounded-lg mr-4">
-                  <svg className="w-6 h-6 text-[#ff9933]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                  <svg className="w-6 h-6 text-[#1e3a8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Office Address</h4>
@@ -166,7 +169,7 @@ export default function Contact() {
 
               <div className="flex items-start">
                 <div className="bg-white/10 p-3 rounded-lg mr-4">
-                  <svg className="w-6 h-6 text-[#ff9933]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                  <svg className="w-6 h-6 text-[#1e3a8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Phone</h4>
@@ -176,7 +179,7 @@ export default function Contact() {
 
               <div className="flex items-start">
                 <div className="bg-white/10 p-3 rounded-lg mr-4">
-                  <svg className="w-6 h-6 text-[#ff9933]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  <svg className="w-6 h-6 text-[#1e3a8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Email</h4>
@@ -189,9 +192,9 @@ export default function Contact() {
               <h4 className="font-semibold mb-4">Follow on Social Media</h4>
               <div className="flex space-x-4">
                 {/* Social Icons placeholders */}
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#ff9933] transition"><span className="sr-only">Facebook</span>F</a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#ff9933] transition"><span className="sr-only">Twitter</span>T</a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#ff9933] transition"><span className="sr-only">Instagram</span>I</a>
+                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#1e3a8a] transition"><span className="sr-only">Facebook</span>F</a>
+                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#1e3a8a] transition"><span className="sr-only">Twitter</span>T</a>
+                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#1e3a8a] transition"><span className="sr-only">Instagram</span>I</a>
               </div>
             </div>
 

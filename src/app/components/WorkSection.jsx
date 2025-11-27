@@ -42,8 +42,8 @@ export default function WorkSection() {
     <section id="work" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-[#000080] mb-4 text-devnagari">वैशाली नगर में मेरा कार्य (Work Portfolio)</h2>
-          <div className="w-24 h-1 bg-[#000080] mx-auto"></div>
+          <h2 className="text-4xl font-extrabold text-[#1e3a8a] mb-4 text-devnagari">वैशाली नगर में मेरा कार्य (Work Portfolio)</h2>
+          <div className="w-24 h-1 bg-[#1e3a8a] mx-auto"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">

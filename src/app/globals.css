@@ -3,12 +3,15 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1a1a1a;
-  --primary: #ff9933;
-  /* Saffron */
-  --secondary: #000080;
-  /* Navy Blue */
-  --accent: #f4f4f4;
+  --foreground: #171717;
+  --primary: #1e3a8a;
+  /* BJP Saffron */
+  --secondary: #1e3a8a;
+  /* Deep Navy */
+  --accent: #138808;
+  /* Green from tricolor */
+  --saffron: #1e3a8a;
+  --saffron-dark: #1e40af;
   --text-muted: #666666;
 }
 

@@ -86,7 +86,7 @@ export default function MediaPage() {
                 <h1 className="text-2xl font-bold text-gray-800">Media Center</h1>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="bg-[#ff9933] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#e68a00] transition-colors"
+                    className="bg-[#1e3a8a] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#e68a00] transition-colors"
                 >
                     <Plus size={20} /> Add Media
                 </button>
@@ -102,7 +102,7 @@ export default function MediaPage() {
                                 <input
                                     type="text"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 />
@@ -112,7 +112,7 @@ export default function MediaPage() {
                                 <input
                                     type="date"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.date}
                                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                                 />
@@ -120,7 +120,7 @@ export default function MediaPage() {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
                                 <select
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.mediaType}
                                     onChange={(e) => setFormData({ ...formData, mediaType: e.target.value })}
                                 >
@@ -134,7 +134,7 @@ export default function MediaPage() {
                                 <input
                                     type="url"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.mediaUrl}
                                     onChange={(e) => setFormData({ ...formData, mediaUrl: e.target.value })}
                                 />
@@ -144,7 +144,7 @@ export default function MediaPage() {
                             <label className="block text-sm font-medium text-gray-700 mb-1">Content / Description</label>
                             <textarea
                                 rows="3"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                 value={formData.content}
                                 onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                             ></textarea>
@@ -159,7 +159,7 @@ export default function MediaPage() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-4 py-2 bg-[#000080] text-white rounded-lg hover:bg-blue-900"
+                                className="px-4 py-2 bg-[#1e3a8a] text-white rounded-lg hover:bg-[#1e40af]"
                             >
                                 Save Media
                             </button>

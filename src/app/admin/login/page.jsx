@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 /**
  * Admin Login Page
@@ -27,25 +26,19 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log("Attempting login with:", email, password);
       const res = await signIn("credentials", {
         redirect: false,
         email,
         password,
       });
-      console.log("Login response:", res);
       setLoading(false);
 
       if (res?.error) {
-        console.error("Login error from response:", res.error);
         alert("Invalid credentials");
         return;
       }
-      // success
-      console.log("Login successful, redirecting...");
       router.push("/admin");
     } catch (err) {
-      console.error(err);
       setLoading(false);
       alert("Login error");
     }
@@ -53,10 +46,10 @@ export default function AdminLoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden border-t-4 border-[#ff9933]">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden border-t-4 border-[#1e3a8a]">
         <div className="p-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-[#000080]">Admin Portal</h2>
+            <h2 className="text-3xl font-bold text-[#1e3a8a]">Admin Portal</h2>
             <p className="text-sm text-gray-500 mt-2">Secure Access for MLA Rikesh Sen</p>
           </div>
 
@@ -67,7 +60,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@example.com"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#ff9933] focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent outline-none transition"
                 type="email"
                 required
               />
@@ -79,7 +72,7 @@ export default function AdminLoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#ff9933] focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent outline-none transition"
                 type="password"
                 required
               />
@@ -87,7 +80,7 @@ export default function AdminLoginPage() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-[#000080] text-white font-bold rounded-lg shadow-md hover:bg-blue-900 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-[#1e3a8a] text-white font-bold rounded-lg shadow-md hover:bg-[#1e40af] hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
               disabled={loading}
             >
               {loading ? (

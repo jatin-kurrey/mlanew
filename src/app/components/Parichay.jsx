@@ -14,14 +14,14 @@ export default function Parichay() {
       >
       </h2>
 
-      <div className="w-24 h-1 bg-[#000080] mx-auto my-4"></div>
+      <div className="w-24 h-1 bg-[#1e3a8a] mx-auto my-4"></div>
 
       {/* Main Content Row */}
       <div className="mt-10 lg:flex lg:space-x-10">
         {/* LEFT SIDE TEXT */}
         <div className="lg:w-2/3">
           {/* Sub-heading */}
-          <h3 className="text-2xl font-bold text-[#000080] mb-4"
+          <h3 className="text-2xl font-bold text-[#1e3a8a] mb-4"
             dangerouslySetInnerHTML={{ __html: parichay.subtitle }}
           >
           </h3>
@@ -37,7 +37,7 @@ export default function Parichay() {
           </p>
 
           {/* Sub-heading */}
-          <h3 className="text-2xl font-bold text-[#000080] mb-4"
+          <h3 className="text-2xl font-bold text-[#1e3a8a] mb-4"
             dangerouslySetInnerHTML={{ __html: parichay.experienceTitle }}
           >
           </h3>
@@ -50,7 +50,7 @@ export default function Parichay() {
 
         {/* RIGHT SIDE FACTS CARD */}
         <div className="lg:w-1/3 mt-8 lg:mt-0">
-          <div className="bg-[#000080] p-6 rounded-lg text-white shadow-lg">
+          <div className="bg-[#1e3a8a] p-6 rounded-lg text-white shadow-lg">
             <h4 className="text-xl font-bold mb-3">{parichay.quickFacts.title}</h4>
 
             <ul className="space-y-2 text-lg">

@@ -74,7 +74,7 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6 border-b border-gray-100 flex justify-between items-center">
             <h3 className="text-lg font-bold text-gray-800">Recent Complaints</h3>
-            <a href="/admin/complaints" className="text-sm text-[#000080] font-medium hover:underline">View All</a>
+            <a href="/admin/complaints" className="text-sm text-[#1e3a8a] font-medium hover:underline">View All</a>
           </div>
 
           <div className="overflow-x-auto">
@@ -120,7 +120,7 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6 border-b border-gray-100 flex justify-between items-center">
             <h3 className="text-lg font-bold text-gray-800">Recent Works</h3>
-            <a href="/admin/manage-work" className="text-sm text-[#000080] font-medium hover:underline">View All</a>
+            <a href="/admin/manage-work" className="text-sm text-[#1e3a8a] font-medium hover:underline">View All</a>
           </div>
 
           <div className="p-6">

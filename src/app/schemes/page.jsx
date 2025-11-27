@@ -1,6 +1,8 @@
 import { BookOpen, CheckCircle, FileText, ExternalLink } from "lucide-react";
 import { connectToDB } from "@/lib/mongodb";
 import Scheme from "@/models/Scheme";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const dynamic = 'force-dynamic';
 
@@ -27,8 +29,8 @@ export default async function SchemesPage() {
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-gray-900">{scheme.title}</h3>
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${scheme.category === 'central' ? 'bg-blue-100 text-blue-800' :
-                            scheme.category === 'state' ? 'bg-green-100 text-green-800' :
-                                'bg-orange-100 text-orange-800'
+                        scheme.category === 'state' ? 'bg-green-100 text-green-800' :
+                            'bg-orange-100 text-blue-800'
                         }`}>
                         {scheme.category.toUpperCase()}
                     </span>
@@ -60,7 +62,7 @@ export default async function SchemesPage() {
                         href={scheme.applyLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#000080] text-white rounded-lg hover:bg-blue-900 transition-colors gap-2 font-medium"
+                        className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#1e3a8a] text-white rounded-lg hover:bg-[#1e40af] transition-colors gap-2 font-medium"
                     >
                         Apply Now <ExternalLink size={16} />
                     </a>
@@ -70,53 +72,57 @@ export default async function SchemesPage() {
     );
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl font-extrabold text-[#ff9933] mb-4">Citizen Services & Schemes</h1>
-                    <p className="text-xl text-gray-600">Access government benefits and services designed for your welfare.</p>
-                </div>
-
-                {stateSchemes.length > 0 && (
-                    <section className="mb-16">
-                        <h2 className="text-2xl font-bold text-[#000080] mb-6 border-b-2 border-[#ff9933] pb-2 inline-block">
-                            State Government Schemes
-                        </h2>
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {stateSchemes.map(scheme => <SchemeCard key={scheme._id} scheme={scheme} />)}
-                        </div>
-                    </section>
-                )}
-
-                {centralSchemes.length > 0 && (
-                    <section className="mb-16">
-                        <h2 className="text-2xl font-bold text-[#000080] mb-6 border-b-2 border-[#ff9933] pb-2 inline-block">
-                            Central Government Schemes
-                        </h2>
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {centralSchemes.map(scheme => <SchemeCard key={scheme._id} scheme={scheme} />)}
-                        </div>
-                    </section>
-                )}
-
-                {localSchemes.length > 0 && (
-                    <section>
-                        <h2 className="text-2xl font-bold text-[#000080] mb-6 border-b-2 border-[#ff9933] pb-2 inline-block">
-                            Local Initiatives
-                        </h2>
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {localSchemes.map(scheme => <SchemeCard key={scheme._id} scheme={scheme} />)}
-                        </div>
-                    </section>
-                )}
-
-                {schemes.length === 0 && (
-                    <div className="text-center py-20 bg-white rounded-xl shadow-sm">
-                        <BookOpen size={48} className="mx-auto text-gray-300 mb-4" />
-                        <p className="text-gray-500 text-lg">No schemes listed currently. Please check back later.</p>
+        <>
+            <Header />
+            <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h1 className="text-4xl font-extrabold text-[#1e3a8a] mb-4">Citizen Services & Schemes</h1>
+                        <p className="text-xl text-gray-600">Access government benefits and services designed for your welfare.</p>
                     </div>
-                )}
+
+                    {stateSchemes.length > 0 && (
+                        <section className="mb-16">
+                            <h2 className="text-2xl font-bold text-[#1e3a8a] mb-6 border-b-2 border-[#1e3a8a] pb-2 inline-block">
+                                State Government Schemes
+                            </h2>
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {stateSchemes.map(scheme => <SchemeCard key={scheme._id} scheme={scheme} />)}
+                            </div>
+                        </section>
+                    )}
+
+                    {centralSchemes.length > 0 && (
+                        <section className="mb-16">
+                            <h2 className="text-2xl font-bold text-[#1e3a8a] mb-6 border-b-2 border-[#1e3a8a] pb-2 inline-block">
+                                Central Government Schemes
+                            </h2>
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {centralSchemes.map(scheme => <SchemeCard key={scheme._id} scheme={scheme} />)}
+                            </div>
+                        </section>
+                    )}
+
+                    {localSchemes.length > 0 && (
+                        <section>
+                            <h2 className="text-2xl font-bold text-[#1e3a8a] mb-6 border-b-2 border-[#1e3a8a] pb-2 inline-block">
+                                Local Initiatives
+                            </h2>
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {localSchemes.map(scheme => <SchemeCard key={scheme._id} scheme={scheme} />)}
+                            </div>
+                        </section>
+                    )}
+
+                    {schemes.length === 0 && (
+                        <div className="text-center py-20 bg-white rounded-xl shadow-sm">
+                            <BookOpen size={48} className="mx-auto text-gray-300 mb-4" />
+                            <p className="text-gray-500 text-lg">No schemes listed currently. Please check back later.</p>
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 }

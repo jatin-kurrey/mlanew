@@ -83,7 +83,7 @@ export default function EventsPage() {
                 <h1 className="text-2xl font-bold text-gray-800">Events Management</h1>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="bg-[#ff9933] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#e68a00] transition-colors"
+                    className="bg-[#1e3a8a] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#e68a00] transition-colors"
                 >
                     <Plus size={20} /> Add Event
                 </button>
@@ -99,7 +99,7 @@ export default function EventsPage() {
                                 <input
                                     type="text"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 />
@@ -109,7 +109,7 @@ export default function EventsPage() {
                                 <input
                                     type="datetime-local"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.date}
                                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                                 />
@@ -119,7 +119,7 @@ export default function EventsPage() {
                                 <input
                                     type="text"
                                     required
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.location}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                 />
@@ -127,7 +127,7 @@ export default function EventsPage() {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
                                 <select
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                     value={formData.type}
                                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                                 >
@@ -148,7 +148,7 @@ export default function EventsPage() {
                             <textarea
                                 required
                                 rows="3"
-                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#ff9933] focus:border-transparent"
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             ></textarea>
@@ -163,7 +163,7 @@ export default function EventsPage() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-4 py-2 bg-[#000080] text-white rounded-lg hover:bg-blue-900"
+                                className="px-4 py-2 bg-[#1e3a8a] text-white rounded-lg hover:bg-[#1e40af]"
                             >
                                 Save Event
                             </button>
