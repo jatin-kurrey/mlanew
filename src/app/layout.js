@@ -1,7 +1,7 @@
 import { Poppins } from 'next/font/google';
 import './globals.css'
 import BackToTop from './components/BackToTop'
-import Providers from './providers';
+import Providers from './Providers';
 
 const poppins = Poppins({
   subsets: ['latin'],

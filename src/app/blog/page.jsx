@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Calendar, User, Tag } from "lucide-react";
 import { connectToDB } from "@/lib/mongodb";
 import BlogPost from "@/models/BlogPost";
